@@ -1,3 +1,4 @@
+#OMNI MK4
 #include <avr/sleep.h>
 #include <avr/wdt.h>
 #include <SoftwareSerial.h>
