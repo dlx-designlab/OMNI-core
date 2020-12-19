@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Comment": "All values are metric (mm)",
+        "CreationDate": "2020-12-17T08:56:47Z",
+        "GenerationSoftware": {
+            "Application": "EAGLE",
+            "Vendor": "Autodesk",
+            "Version": "9.6.2"
+        },
+        "Part": "Single"
+    },
+    "Overall": {
+        "BoardThickness": 1.6,
+        "LayerNumber": 2,
+        "Name": {
+            "ProjectId": "omni"
+        },
+        "Owner": "  <>",
+        "Size": {
+            "X": 70,
+            "Y": 53.6
+        }
+    }
+}
