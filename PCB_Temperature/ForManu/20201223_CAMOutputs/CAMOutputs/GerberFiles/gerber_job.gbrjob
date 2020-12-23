@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Comment": "All values are metric (mm)",
+        "CreationDate": "2020-12-23T09:52:05Z",
+        "GenerationSoftware": {
+            "Application": "EAGLE",
+            "Vendor": "Autodesk",
+            "Version": "9.6.2"
+        },
+        "Part": "Single"
+    },
+    "Overall": {
+        "BoardThickness": 1.6,
+        "LayerNumber": 2,
+        "Name": {
+            "ProjectId": "omni"
+        },
+        "Owner": "Tin Nguyen <tin_nguyen@aml.t.u-tokyo.ac.jp>",
+        "Size": {
+            "X": 70,
+            "Y": 53.6
+        }
+    }
+}
