@@ -35,9 +35,9 @@ const int LoRatry = durationOfLoRaConecctionTrial;  // try LoRa connection for 6
 
 //******** pin assign ******************************************************//
 const uint8_t  NetworkPower = 12;
-const uint8_t	 TemperatureOutput1Pin = A0;
-const uint8_t	 TemperatureOutput2Pin = A1;
-const uint8_t	 TemperatureOutput3Pin = A2;
+const uint8_t　TemperatureOutput1Pin = A0;
+const uint8_t　TemperatureOutput2Pin = A1;
+const uint8_t　TemperatureOutput3Pin = A2;
 const uint8_t  TemperatureEnablePin = 10; // 3-pins package does not have SHUTDOWN PIN, Use Power Pin for enable
 const uint8_t  GPSpower = 8;
 const uint8_t  GPSrxPin = 9;

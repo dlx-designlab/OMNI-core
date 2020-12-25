@@ -3,7 +3,8 @@
 #include <SoftwareSerial.h>
 #include <TinyGPS++.h>
 #include <SoftwareSerial.h>
-#include <LoRaWAN_TLM922S_SoftwareSerial.h>
+#include "LoRaWAN_TLM922S.h"
+// #include <LoRaWAN_TLM922S_SoftwareSerial.h>
 
 //*************************************************//
 // for a PCB of OMNI version 0.1.0
@@ -11,9 +12,7 @@
 
 //**************OMNI Setting***********//
 const int durationOfSleep = 0; //sleep minutes
-const int numOfSalinityTrial = 2; 
 const int numOfGPSTrial = 6; 
-const int durationOfSalinityInterval = 5; 
 const int durationOfRecievingGPS = 50 ;// second
 const int durationOf2ndGPS = 50; //second
 const int durationOfLoRaConecctionTrial = 120;
@@ -26,7 +25,6 @@ const int maxgpstry = durationOfRecievingGPS * 50; //time for getting GPS signal
 const int LoRatry = durationOfLoRaConecctionTrial;  // try LoRa connection for 60 times (120 sec)
 
 //******** pin assign ******************************************************//
-const uint8_t  NetworkPower = 12;
 const uint8_t  TemperatureOutput1Pin = A0;
 const uint8_t  TemperatureOutput2Pin = A1;
 const uint8_t  TemperatureOutput3Pin = A2;
@@ -47,7 +45,8 @@ const uint8_t  onBoardLED = 13;
 #define SET_TX      TX_CNF
 #define SET_JOIN    JOIN_OTAA
 #define SET_LCHK    false
-LoRaWAN_TLM922S_SoftwareSerial LoRaWAN(LoRaRX, LoRaTX);
+LoRaWAN_TLM922S LoRaWAN(LoRaRX, LoRaTX);
+// LoRaWAN_TLM922S_SoftwareSerial LoRaWAN(LoRaRX, LoRaTX);
 #define LORA_WAKE_PIN    3
 //device detail
 //https://github.com/askn37/LoRaWAN_TLM922S
@@ -81,14 +80,6 @@ const float OFFSET1 = 3.0; // offset to calibrate sensor 1
 const float OFFSET2 = 3.0; // offset to calibrate sensor 2
 const float OFFSET3 = 3.0; // offset to calibrate sensor 3
 
-//******** EC ******************************************************//
-//oftwareSerial ECserial(ECRX, ECTX);   
-String inputstring = "";                              //a string to hold incoming data from the PC
-String sensorstring = "";                             //a string to hold the data from the Atlas Scientific product
-boolean input_string_complete = false;                //have we received all the data from the PC
-boolean sensor_string_complete = false;               //have we received all the data from the Atlas Scientific product
-float psu = 0.0;
-float ecValue = 0.0;
 
 //******** restart ******************************************************//
 void software_reset() {
@@ -99,7 +90,6 @@ void software_reset() {
 }
 
 //******** sleep ******************************************************//
-bool bIsECUpdated = false;
 bool bIsGPSUpdated = false;
 bool bNeedToSendData = false;
 
@@ -159,8 +149,6 @@ void setup()
   gpsSS.begin(gpsBaudRate);
   
   Serial.println("Network -----------");
-  pinMode(NetworkPower, OUTPUT);
-  digitalWrite(NetworkPower, LOW);
   Serial.println("initializing LoRa.");
 
   LoRaWAN.begin(LORAWAN_BAUD);
@@ -182,7 +170,7 @@ void setup()
   
   getGPS();
   
-  Serial.println("Sned first Data."); 
+  Serial.println("Send first Data."); 
   sendDataLoRa();
   delay(200);
   //Serial.println("Sleep LoRa-----------");
@@ -216,11 +204,11 @@ void loop()
 Serial.println("GPS -----------");
  getGPS();
  delay(500);
- getTemperature();
- delay(500);
 
  
  Serial.println("Temperatures -----------");
+ getTemperature();
+ delay(500);
  Serial.print("Temp sensor 1: ");  Serial.println(temp1, 2);
  Serial.print("Temp sensor 2: ");  Serial.println(temp2, 2);
  Serial.print("Temp sensor 3: ");  Serial.println(temp3, 2);
@@ -305,18 +293,6 @@ void initTemperatureSensors()
   digitalWrite(TemperatureEnablePin, LOW); // make sure all temperature are OFF
 	delay(TEMPSENSOR_SETTLEDELAY);
 }
-
-
-//void printAddress(DeviceAddress deviceAddress)
-//{
-//  for (uint8_t i = 0; i < 8; i++)
-//  {
-//    // zero pad the address if necessary
-//    if (deviceAddress[i] < 16) Serial.print("0");
-//    Serial.print(deviceAddress[i], HEX);
-//  }
-//  Serial.println("");
-//}
 
 
 //---------------------------------------------------
@@ -466,10 +442,6 @@ void sendDataLoRa(){
     printResult();
     
     // 送信データを準備する
-    // float temp1 =temperatureValue1;
-    // float temp2 = temperatureValue2;
-    // float temp3 = temperatureValue3;
-    float salinity = psu;
 
      Serial.println("Temperatures -----------");
      Serial.println(temp1, 2);
@@ -494,9 +466,6 @@ void sendDataLoRa(){
     LoRaWAN.write(str); delay(10); 
 
     float2ByteString(temp3, str);
-    LoRaWAN.write(str); delay(10); 
-
-    float2ByteString(salinity, str);
     LoRaWAN.write(str); delay(10); 
 
     float2ByteString(numSatellites, str);
