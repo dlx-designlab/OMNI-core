@@ -4,8 +4,7 @@
 #include <SoftwareSerial.h>
 #include <TinyGPS++.h>
 #include <SoftwareSerial.h>
-#include "LoRaWAN_TLM922S.h"
-// #include <LoRaWAN_TLM922S_SoftwareSerial.h>
+
 
 /////////////////////////////////////////////////////
 //This is the code that use the TMP36 temperature sensor with LTE without LTE module power control pin
@@ -128,6 +127,11 @@ void setup()
    //sleep setting
   pinMode(wakePin, INPUT);
 
+  //network power pin setting
+  pinMode(NetworkPower, OUTPUT);
+  digitalWrite(NetworkPower, HIGH);
+  delay(100);
+
   //start
   Serial.println("This is OMNI");
   digitalWrite(onBoardLED, HIGH);
@@ -159,11 +163,7 @@ void setup()
   delay(100);
   digitalWrite(NetworkPower, LOW);
   delay(2000);
-  digitalWrite(NetworkPower, HIGH);
-  
 
-  blinkLED(3);
-  digitalWrite(onBoardLED, HIGH);
   startLTE();
   
   getGPS();
@@ -172,6 +172,8 @@ void setup()
   sendDataLTE();
   // sendDataLoRa();
   delay(200);
+  Serial.println("Network power down.");  
+  digitalWrite(NetworkPower, HIGH);
   //Serial.println("Sleep LoRa-----------");
   //LoRaWAN.sleep(0);
 
@@ -216,14 +218,15 @@ Serial.println("GPS -----------");
  
  //--------------- start network connection -----------
  Serial.println("LTE -----------");
-// digitalWrite(NetworkPower, LOW);
+ digitalWrite(NetworkPower, LOW);
  //while (!LoRaWAN.wakeUp());  // PS_OK
  delay(100);
  sendDataLTE();
  
  if(bSleep){
     
-   // Serial.println("Network power down.");  
+   Serial.println("Network power down.");  
+   digitalWrite(NetworkPower, HIGH);
    // digitalWrite(LORA_WAKE_PIN, LOW);
     delay(200);  
     //LoRaWAN.sleep(0);
