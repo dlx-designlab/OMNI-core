@@ -123,6 +123,9 @@ void setup()
 
   //LED setting
   pinMode(onBoardLED, OUTPUT);
+
+  //Temperature pin setting
+  pinMode(TemperatureEnablePin, OUTPUT);
   
    //sleep setting
   pinMode(wakePin, INPUT);
