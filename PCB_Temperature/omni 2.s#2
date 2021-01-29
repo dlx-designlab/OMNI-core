@@ -1028,7 +1028,6 @@ In this library the device names are the same as the pin names of the symbols, t
 <part name="SUPPLY5" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY6" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY7" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="V+" device=""/>
-<part name="SUPPLY8" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="V+" device=""/>
 <part name="SUPPLY9" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="V+" device=""/>
 <part name="GPS" library="OMNI" deviceset="GPSAKITSUKI" device="" package3d_urn="urn:adsk.eagle:package:8332/1" value="AE-GYSFDMAXB"/>
 <part name="SUPPLY14" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
@@ -1063,11 +1062,8 @@ In this library the device names are the same as the pin names of the symbols, t
 <instance part="SUPPLY7" gate="1" x="93.98" y="114.3" smashed="yes">
 <attribute name="VALUE" x="92.71" y="115.57" size="1.778" layer="96"/>
 </instance>
-<instance part="SUPPLY8" gate="1" x="106.68" y="-40.64" smashed="yes">
-<attribute name="VALUE" x="105.41" y="-39.37" size="1.778" layer="96"/>
-</instance>
-<instance part="SUPPLY9" gate="1" x="81.28" y="73.66" smashed="yes">
-<attribute name="VALUE" x="80.01" y="74.93" size="1.778" layer="96"/>
+<instance part="SUPPLY9" gate="1" x="86.36" y="73.66" smashed="yes">
+<attribute name="VALUE" x="85.09" y="74.93" size="1.778" layer="96"/>
 </instance>
 <instance part="GPS" gate="G$1" x="-35.56" y="48.26" smashed="yes">
 <attribute name="VALUE" x="-36.83" y="38.1" size="1.778" layer="96"/>
@@ -1114,22 +1110,6 @@ In this library the device names are the same as the pin names of the symbols, t
 <busses>
 </busses>
 <nets>
-<net name="N$4" class="0">
-<segment>
-<pinref part="LTE_LORA" gate="G$1" pin="3V"/>
-<wire x1="106.68" y1="-66.04" x2="91.44" y2="-66.04" width="0.1524" layer="91"/>
-<pinref part="LTE_LORA" gate="G$1" pin="VIN"/>
-<wire x1="106.68" y1="-43.18" x2="106.68" y2="-55.88" width="0.1524" layer="91"/>
-<wire x1="106.68" y1="-55.88" x2="91.44" y2="-55.88" width="0.1524" layer="91"/>
-<wire x1="106.68" y1="-55.88" x2="106.68" y2="-63.5" width="0.1524" layer="91"/>
-<junction x="106.68" y="-55.88"/>
-<pinref part="LTE_LORA" gate="G$1" pin="5V"/>
-<wire x1="106.68" y1="-63.5" x2="91.44" y2="-63.5" width="0.1524" layer="91"/>
-<wire x1="106.68" y1="-66.04" x2="106.68" y2="-63.5" width="0.1524" layer="91"/>
-<junction x="106.68" y="-63.5"/>
-<pinref part="SUPPLY8" gate="1" pin="V+"/>
-</segment>
-</net>
 <net name="GND" class="0">
 <segment>
 <pinref part="SUPPLY5" gate="GND" pin="GND"/>
@@ -1184,7 +1164,7 @@ In this library the device names are the same as the pin names of the symbols, t
 <segment>
 <pinref part="SUPPLY9" gate="1" pin="V+"/>
 <pinref part="U$1" gate="G$1" pin="VCC"/>
-<wire x1="81.28" y1="71.12" x2="60.96" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="86.36" y1="71.12" x2="60.96" y2="71.12" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="JP1" gate="G$1" pin="1"/>
@@ -1261,12 +1241,6 @@ In this library the device names are the same as the pin names of the symbols, t
 <junction x="157.48" y="109.22"/>
 </segment>
 </net>
-<net name="N$19" class="0">
-<segment>
-<pinref part="LTE_LORA" gate="G$1" pin="A0"/>
-<wire x1="93.98" y1="-50.8" x2="91.44" y2="-50.8" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="N$3" class="0">
 <segment>
 <pinref part="U$1" gate="G$1" pin="A0"/>
@@ -1315,6 +1289,22 @@ In this library the device names are the same as the pin names of the symbols, t
 <pinref part="TEMP1" gate="-3" pin="S"/>
 <pinref part="TEMP2" gate="-3" pin="S"/>
 <pinref part="TEMP3" gate="-3" pin="S"/>
+</segment>
+</net>
+<net name="N$7" class="0">
+<segment>
+<wire x1="68.58" y1="40.64" x2="68.58" y2="53.34" width="0.1524" layer="91"/>
+<pinref part="U$1" gate="G$1" pin="D11"/>
+<wire x1="68.58" y1="53.34" x2="60.96" y2="53.34" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$11" class="0">
+<segment>
+<pinref part="LTE_LORA" gate="G$1" pin="3V"/>
+<pinref part="LTE_LORA" gate="G$1" pin="5V"/>
+<wire x1="106.68" y1="-63.5" x2="91.44" y2="-63.5" width="0.1524" layer="91"/>
+<wire x1="106.68" y1="-66.04" x2="106.68" y2="-63.5" width="0.1524" layer="91"/>
+<wire x1="106.68" y1="-66.04" x2="91.44" y2="-66.04" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
