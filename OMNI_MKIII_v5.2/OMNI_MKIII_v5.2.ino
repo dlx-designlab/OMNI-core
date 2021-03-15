@@ -3,7 +3,6 @@
 #include <SakuraIO.h>
 #include <SoftwareSerial.h>
 #include <TinyGPS++.h>
-#include <SoftwareSerial.h>
 
 
 /////////////////////////////////////////////////////
@@ -14,7 +13,7 @@
 // for a PCB of OMNI version 0.1.0
 #define CONSOLE_BAUD  9600
 //**************OMNI Setting***********//
-const int durationOfSleep = 0; //sleep minutes
+const int durationOfSleep = 1; //sleep minutes
 const int numOfGPSTrial = 6; 
 const int durationOfRecievingGPS = 50 ;// second
 const int durationOf2ndGPS = 50; //second
@@ -81,9 +80,9 @@ int count = 0; // counting variable for taking average
 float temp1 = 0.0; // temperature sensor 1 readings
 float temp2 = 0.0; // temperature sensor 2 readings
 float temp3 = 0.0; // temperature sensor 3 readings
-const float OFFSET1 = 3.0; // offset to calibrate sensor 1
-const float OFFSET2 = 3.0; // offset to calibrate sensor 2
-const float OFFSET3 = 3.0; // offset to calibrate sensor 3
+const float OFFSET1 = 57.31; // offset to calibrate sensor 1
+const float OFFSET2 = 57.31; // offset to calibrate sensor 2
+const float OFFSET3 = 57.31; // offset to calibrate sensor 3
 
 
 //******** restart ******************************************************//

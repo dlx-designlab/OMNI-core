@@ -2,7 +2,6 @@
 #include <avr/wdt.h>
 #include <SoftwareSerial.h>
 #include <TinyGPS++.h>
-#include <SoftwareSerial.h>
 #include "LoRaWAN_TLM922S.h"
 // #include <LoRaWAN_TLM922S_SoftwareSerial.h>
 
